@@ -78,7 +78,7 @@ int main()
 	std::vector<unsigned char> image;
 	int nx = 2000;
 	int ny = 1000;
-	int ns = 50;
+	int ns = 100;
 
 	hitable *world = random_scene();
 
@@ -112,5 +112,5 @@ int main()
 			std::cout << ny/10-j/10 << "/" << ny / 10 << std::endl;
 		}
 	}
-	stbi_write_jpg("out\\out.jpg", nx, ny, 3, image.data(), 200);
+	stbi_write_jpg("out\\out1.jpg", nx, ny, 3, image.data(), 200);
 }
