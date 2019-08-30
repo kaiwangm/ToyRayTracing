@@ -261,4 +261,3 @@ __pycache__/
 *.pyc
 ToyRayTracing/include/stb_image_write.h
 .gitignore
-ToyRayTracing/include/stb_image_write.h
