@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "hitable.h"
 
 class hitable_list :public hitable

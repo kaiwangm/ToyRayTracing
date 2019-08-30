@@ -1,4 +1,4 @@
-#include<iostream>
+﻿#include<iostream>
 #include<vector>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include<stb_image_write.h>
@@ -76,8 +76,8 @@ vec3 color(const ray& r,hitable* world,int depth)
 int main()
 {
 	std::vector<unsigned char> image;
-	int nx = 2000;
-	int ny = 1000;
+	int nx = 200;
+	int ny = 100;
 	int ns = 100;
 
 	hitable *world = random_scene();
@@ -89,7 +89,8 @@ int main()
 	camera cam(lookfrom, lookat, vec3(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
 	for (int j = ny - 1; j >= 0; j--)
 	{
-		for (int i = 0; i < nx; i++)
+		int i;
+		for (i = 0; i < nx; i++)
 		{
 			vec3 col(0, 0, 0);
 			for (int s = 0; s < ns; s++)
@@ -97,18 +98,18 @@ int main()
 				float u = float(i + rand() / double(RAND_MAX)) / float(nx);
 				float v = float(j + rand() / double(RAND_MAX)) / float(ny);
 				ray r = cam.get_ray(u, v);
-				vec3 p = r.point_at_parameter(2.0);
-				col += color(r, world, 0);
+				col += color(r, world, 0)/ float(ns);
 			}
 			
-			col /= float(ns);
 			col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 			image.push_back(int(255.99*col.r()));
 			image.push_back(int(255.99*col.g()));
 			image.push_back(int(255.99*col.b()));
+			
 		}
 		if (j % 10 == 0)
 		{
+			stbi_write_jpg("out\\out1.jpg", i, ny - j, 3, image.data(), 200);
 			std::cout << ny/10-j/10 << "/" << ny / 10 << std::endl;
 		}
 	}
